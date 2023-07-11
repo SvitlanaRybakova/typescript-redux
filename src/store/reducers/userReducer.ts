@@ -1,27 +1,11 @@
+import {
+  IUserState,
+  IFetchUsersAction,
+  IFetchUsersActionSuccess,
+  IFetchUsersActionError,
+  UserActionTypes,
+} from '../../types/user';
 
-interface IUserState {
-  users: any[];
-  loading: boolean;
-  error: null | string;
-}
-
-enum UserActionTypes {
-  FETCH_USERS = 'FETCH_USERS',
-  FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS',
-  FETCH_USERS_ERROR = 'FETCH_USERS_ERROR',
-}
-
-interface IFetchUsersAction {
-  type: UserActionTypes.FETCH_USERS;
-}
-interface IFetchUsersActionSuccess {
-  type: UserActionTypes.FETCH_USERS_SUCCESS;
-  payload: any[];
-}
-interface IFetchUsersActionError {
-  type: UserActionTypes.FETCH_USERS_ERROR;
-  payload: string;
-}
 
 const initialState: IUserState = {
   users: [],
