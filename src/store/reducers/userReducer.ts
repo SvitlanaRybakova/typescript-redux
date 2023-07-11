@@ -4,6 +4,7 @@ import {
   IFetchUsersActionSuccess,
   IFetchUsersActionError,
   UserActionTypes,
+  UserActions,
 } from '../../types/user';
 
 
@@ -15,7 +16,7 @@ const initialState: IUserState = {
 
 export const userReducer = (
   state = initialState,
-  action: IFetchUsersAction | IFetchUsersActionError | IFetchUsersActionSuccess
+  action: UserActions
 ): IUserState => {
   switch (action.type) {
     case UserActionTypes.FETCH_USERS:

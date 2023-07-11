@@ -23,3 +23,5 @@ export interface IFetchUsersActionError {
   type: UserActionTypes.FETCH_USERS_ERROR;
   payload: string;
 }
+
+export type UserActions = IFetchUsersAction | IFetchUsersActionError | IFetchUsersActionSuccess
