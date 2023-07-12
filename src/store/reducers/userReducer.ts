@@ -1,8 +1,5 @@
 import {
   IUserState,
-  IFetchUsersAction,
-  IFetchUsersActionSuccess,
-  IFetchUsersActionError,
   UserActionTypes,
   UserActions,
 } from '../../types/user';

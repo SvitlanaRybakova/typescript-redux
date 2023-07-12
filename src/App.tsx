@@ -1,11 +1,16 @@
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import UserList from './components/UserList';
+import UserList from './pages/UserList';
+import UserPage from './pages/UserPage';
 
 function App() {
   return (
     <>
-      <UserList />
+      <Routes>
+        <Route path='/users/:id' element={<UserPage />} />
+        <Route path='/' element={<UserList />} />
+      </Routes>
     </>
   );
 }
