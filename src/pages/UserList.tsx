@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
-import { fetchUsers } from '../store/action-creators/fetchUsers';
+import { fetchUsers } from '../store/action-creators/fetchAllUsers';
 import { useNavigate } from 'react-router-dom';
 
 const UserList: React.FC = () => {
@@ -12,6 +12,7 @@ const UserList: React.FC = () => {
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
+  
   return (
     <div className='container mx-auto'>
       {loading && <div>loading</div>}

@@ -2,7 +2,7 @@ import {
   IUserState,
   UserActionTypes,
   UserActions,
-} from '../../types/user';
+} from '../../types/getAllUsers';
 
 
 const initialState: IUserState = {
@@ -16,11 +16,11 @@ export const userReducer = (
   action: UserActions
 ): IUserState => {
   switch (action.type) {
-    case UserActionTypes.FETCH_USERS:
+    case UserActionTypes.FETCH_ALL_USERS:
       return { loading: true, error: null, users: [] };
-    case UserActionTypes.FETCH_USERS_SUCCESS:
+    case UserActionTypes.FETCH_ALL_USERS_SUCCESS:
       return { loading: false, error: null, users: action.payload };
-    case UserActionTypes.FETCH_USERS_ERROR:
+    case UserActionTypes.FETCH_ALL_USERS_ERROR:
       return { loading: false, error: action.payload, users: [] };
     default:
       return state;
