@@ -1,5 +1,5 @@
 export interface ICertainUserState {
-  user: {};
+  user: any;
   loading: boolean;
   error: null | string;
 }
