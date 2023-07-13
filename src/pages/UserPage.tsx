@@ -46,7 +46,7 @@ const UserPage = () => {
       {error && <div>{error}</div>}
       {user && (
         <div className='flex flex-col justify-center h-screen'>
-          <div className='relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-7xl md:max-w-3xl mx-auto border border-white bg-white'>
+          <div className='relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-7xl md:min-w-[60rem] mx-auto border border-white bg-white'>
             <div className='w-full md:w-1/2 bg-white grid place-items-center'>
               <Map
                 location={{
@@ -56,7 +56,7 @@ const UserPage = () => {
                 zoomLevel={17}
               />
             </div>
-            <div className='w-full  bg-white flex flex-col space-y-2 p-3'>
+            <div className='bg-white flex flex-col space-y-2 p-3'>
               <div className='flex justify-between item-center'>
                 {/* username */}
                 <div className='flex items-center'>
