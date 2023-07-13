@@ -6,13 +6,13 @@ import { FaRegUser } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 
 import { fetchCertainUser } from '../store/action-creators/fetchCertainUser';
+import Map from '../components/Map';
 
 const UserPage = () => {
   let { id } = useParams();
   const { loading, error, user } = useTypeSelector(
     (state) => state.certainUser
   );
-
 
   const dispatch = useDispatch();
 
@@ -46,15 +46,17 @@ const UserPage = () => {
       {error && <div>{error}</div>}
       {user && (
         <div className='flex flex-col justify-center h-screen'>
-          <div className='relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white'>
-            <div className='w-full md:w-1/3 bg-white grid place-items-center'>
-              <img
-                src='https://images.pexels.com/photos/4381392/pexels-photo-4381392.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-                alt='tailwind logo'
-                className='rounded-xl'
+          <div className='relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-7xl md:max-w-3xl mx-auto border border-white bg-white'>
+            <div className='w-full md:w-1/2 bg-white grid place-items-center'>
+              <Map
+                location={{
+                  lat: 10.99835602,
+                  lng: 77.01502627,
+                }}
+                zoomLevel={17}
               />
             </div>
-            <div className='w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3'>
+            <div className='w-full  bg-white flex flex-col space-y-2 p-3'>
               <div className='flex justify-between item-center'>
                 {/* username */}
                 <div className='flex items-center'>

@@ -4,6 +4,8 @@ import { useTypeSelector } from '../customHooks/useTypeSelector';
 import { fetchUsers } from '../store/action-creators/fetchAllUsers';
 import { useNavigate } from 'react-router-dom';
 
+import noImage from '../assets/noImage.png';
+
 const UserList: React.FC = () => {
   let navigate = useNavigate();
   const { users, loading, error } = useTypeSelector((state) => state.user);
@@ -12,7 +14,7 @@ const UserList: React.FC = () => {
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
-  
+
   return (
     <div className='container mx-auto'>
       {loading && <div>loading</div>}
@@ -28,8 +30,8 @@ const UserList: React.FC = () => {
               <div className='flex gap-x-4'>
                 <img
                   className='h-12 w-12 flex-none rounded-full bg-gray-50'
-                  src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                  alt=''
+                  src={noImage}
+                  alt='image is not available'
                 />
                 <div className='min-w-0 flex-auto'>
                   <p className='text-sm font-semibold leading-6 text-gray-900'>
