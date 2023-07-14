@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import clsx from 'clsx';
 import { ImRadioChecked } from 'react-icons/im';
 import { ImRadioChecked2 } from 'react-icons/im';
 
@@ -97,7 +98,13 @@ const TodosList: React.FC = () => {
               <ul className='inline-flex -space-x-px'>
                 {pages.map((p) => (
                   <li key={uuidv4()} onClick={() => dispatch(setTodoPage(p))}>
-                    <span className='bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700 leading-tight py-2 px-3 cursor-pointer'>
+                    <span
+                      className={clsx(
+                        'bg-white border border-gray-300 cursor-pointer leading-tight py-2 px-3',
+                        'hover:bg-gray-100 hover:text-gray-700',
+                        { 'bg-blue-100': p === page }
+                      )}
+                    >
                       {p}
                     </span>
                   </li>
