@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useTypeSelector } from '../customHooks/useTypeSelector';
 import { FaRegUser } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { v4 as uuidv4 } from 'uuid';
 
+import { useTypeSelector } from '../customHooks/useTypeSelector';
 import { fetchCertainUser } from '../store/action-creators/fetchCertainUser';
 import Map from '../components/Map';
 
@@ -32,7 +33,7 @@ const UserPage = () => {
     ];
 
     return info.map((el) => (
-      <tbody>
+      <tbody key={uuidv4()}>
         <tr>
           <td className='text-gray-500 capitalize'> {el.key}</td>
           <td className='text-gray-600 font-bold ml-1'>{el.value}</td>
