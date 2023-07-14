@@ -24,4 +24,7 @@ export interface IFetchUsersActionError {
   payload: string;
 }
 
-export type UserActions = IFetchUsersAction | IFetchUsersActionError | IFetchUsersActionSuccess
+export type UserActions =
+  | IFetchUsersAction
+  | IFetchUsersActionError
+  | IFetchUsersActionSuccess;
