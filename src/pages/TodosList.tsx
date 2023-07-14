@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import clsx from 'clsx';
 import { ImRadioChecked } from 'react-icons/im';
 import { ImRadioChecked2 } from 'react-icons/im';
 
+import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
-import { fetchTodos, setTodoPage } from '../store/action-creators/fetchTodos';
+
 
 const TOTAL_ITEMS = 200;
 const START_PAGE = 1;
@@ -15,10 +15,11 @@ const TodosList: React.FC = () => {
   const { todos, page, limit, loading, error } = useTypeSelector(
     (state) => state.todos
   );
-  const dispatch = useDispatch();
+
+  const { fetchTodos, setTodoPage } = useActions();
 
   useEffect(() => {
-    dispatch(fetchTodos(page, limit));
+    fetchTodos(page, limit);
   }, [page]);
 
   const pages = Array.from(
@@ -97,7 +98,7 @@ const TodosList: React.FC = () => {
             <nav aria-label='Page navigation example'>
               <ul className='inline-flex -space-x-px'>
                 {pages.map((p) => (
-                  <li key={uuidv4()} onClick={() => dispatch(setTodoPage(p))}>
+                  <li key={uuidv4()} onClick={() => setTodoPage(p)}>
                     <span
                       className={clsx(
                         'bg-white border border-gray-300 cursor-pointer leading-tight py-2 px-3',

@@ -1,19 +1,22 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useTypeSelector } from '../customHooks/useTypeSelector';
-import { fetchUsers } from '../store/action-creators/fetchAllUsers';
 import { useNavigate } from 'react-router-dom';
 
+import { useTypeSelector } from '../customHooks/useTypeSelector';
+import { useActions } from '../customHooks/useActions';
 import noImage from '../assets/noImage.png';
 
 const UserList: React.FC = () => {
   let navigate = useNavigate();
   const { users, loading, error } = useTypeSelector((state) => state.user);
-  const dispatch = useDispatch();
+
+  const { fetchUsers } = useActions();
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    fetchUsers();
   }, []);
+
+  if (error) return <div>{error}</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <>
@@ -21,8 +24,6 @@ const UserList: React.FC = () => {
         User List
       </h2>
       <div className='container mx-auto'>
-        {loading && <div>loading</div>}
-        {error && <div>{error}</div>}
         <ul style={{ borderBottom: '1px solid #80808057' }} role='list'>
           {users.length > 0 &&
             users.map((user) => (

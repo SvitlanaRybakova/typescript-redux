@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { FaRegUser } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
 import { v4 as uuidv4 } from 'uuid';
 
+import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
-import { fetchCertainUser } from '../store/action-creators/fetchCertainUser';
+
 import Map from '../components/Map';
 
 const UserPage = () => {
@@ -15,11 +15,14 @@ const UserPage = () => {
     (state) => state.certainUser
   );
 
-  const dispatch = useDispatch();
+  const { fetchCertainUser } = useActions();
 
   useEffect(() => {
-    dispatch(fetchCertainUser(id));
+    fetchCertainUser(id);
   }, [id]);
+
+  if (error) return <div>{error}</div>;
+  if (loading) return <div>Loading...</div>;
 
   const renderTheUserInfo = () => {
     const info = [
@@ -43,8 +46,6 @@ const UserPage = () => {
   };
   return (
     <>
-      {loading && <div>loading</div>}
-      {error && <div>{error}</div>}
       {user && (
         <div className='flex flex-col justify-center h-screen'>
           <div className='relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-7xl md:min-w-[60rem] mx-auto border border-white bg-white'>
