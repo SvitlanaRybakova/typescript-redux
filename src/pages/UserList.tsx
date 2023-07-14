@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
 import { useActions } from '../customHooks/useActions';
 import noImage from '../assets/noImage.png';
+import Spinner from '../components/Spinner';
+import Error from '../components/Error';
 
 const UserList: React.FC = () => {
   let navigate = useNavigate();
@@ -15,8 +17,8 @@ const UserList: React.FC = () => {
     fetchUsers();
   }, []);
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading...</div>;
+  if (error) return <Error errorText={error} />;
+  if (loading) return <Spinner />;
 
   return (
     <>

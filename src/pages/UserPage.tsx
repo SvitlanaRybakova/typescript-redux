@@ -8,6 +8,8 @@ import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
 
 import Map from '../components/Map';
+import Spinner from '../components/Spinner';
+import Error from '../components/Error';
 
 const UserPage = () => {
   let { id } = useParams();
@@ -21,8 +23,8 @@ const UserPage = () => {
     fetchCertainUser(id);
   }, [id]);
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading...</div>;
+  if (error) return <Error errorText={error} />;
+  if (loading) return <Spinner />;
 
   const renderTheUserInfo = () => {
     const info = [

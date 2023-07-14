@@ -6,7 +6,8 @@ import { ImRadioChecked2 } from 'react-icons/im';
 
 import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
-
+import Spinner from '../components/Spinner';
+import Error from '../components/Error';
 
 const TOTAL_ITEMS = 200;
 const START_PAGE = 1;
@@ -34,8 +35,8 @@ const TodosList: React.FC = () => {
     { id: uuidv4(), value: 'Completed' },
   ];
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading...</div>;
+  if (error) return <Error errorText={error} />;
+  if (loading) return <Spinner />;
 
   return (
     <div>
@@ -103,7 +104,7 @@ const TodosList: React.FC = () => {
                       className={clsx(
                         'bg-white border border-gray-300 cursor-pointer leading-tight py-2 px-3',
                         'hover:bg-gray-100 hover:text-gray-700',
-                        { 'bg-blue-100': p === page }
+                        { 'bg-[#1d4eda52]': p === page }
                       )}
                     >
                       {p}
