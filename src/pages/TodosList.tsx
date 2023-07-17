@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import clsx from 'clsx';
-import { ImRadioChecked } from 'react-icons/im';
-import { ImRadioChecked2 } from 'react-icons/im';
 
 import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
 import Spinner from '../components/Spinner';
 import Error from '../components/Error';
+import TodoItem from '../components/TodoItem';
+import Pagination from '../components/Pagination';
+import { ITodo } from '../types/todo';
 
 const TOTAL_ITEMS = 200;
 const START_PAGE = 1;
@@ -23,12 +23,17 @@ const TodosList: React.FC = () => {
     fetchTodos(page, limit);
   }, [page]);
 
-  const pages = Array.from(
+  const pages: Array<number> = Array.from(
     { length: Math.ceil(TOTAL_ITEMS / limit) - 1 },
     (x, i) => i + START_PAGE
   );
 
-  const tableHeader = [
+  interface ITableHeader {
+    id: string;
+    value: string;
+  }
+
+  const tableHeader: ITableHeader[] = [
     { id: uuidv4(), value: 'User Id' },
     { id: uuidv4(), value: 'Todo Id' },
     { id: uuidv4(), value: 'Todo Title' },
@@ -66,26 +71,13 @@ const TodosList: React.FC = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {todos.map((todo) => (
-                          <tr className='bg-gray-100 border-b' key={uuidv4()}>
-                            <td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
-                              {todo.userId}
-                            </td>
-                            <td className='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
-                              {todo.id}
-                            </td>
-                            <td className='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
-                              {todo.title}
-                            </td>
-                            <td className='text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap'>
-                              {todo.completed && (
-                                <ImRadioChecked color={'green'} />
-                              )}
-                              {!todo.completed && (
-                                <ImRadioChecked2 color={'red'} />
-                              )}
-                            </td>
-                          </tr>
+                        {todos.map((todo: ITodo) => (
+                          <TodoItem
+                            userId={todo.userId}
+                            id={todo.id}
+                            title={todo.title}
+                            completed={todo.completed}
+                          />
                         ))}
                       </tbody>
                     </table>
@@ -95,25 +87,11 @@ const TodosList: React.FC = () => {
             </div>
           </div>
 
-          <div className='max-w-2xl mx-auto m-8'>
-            <nav aria-label='Page navigation example'>
-              <ul className='inline-flex -space-x-px'>
-                {pages.map((p) => (
-                  <li key={uuidv4()} onClick={() => setTodoPage(p)}>
-                    <span
-                      className={clsx(
-                        'bg-white border border-gray-300 cursor-pointer leading-tight py-2 px-3',
-                        'hover:bg-gray-100 hover:text-gray-700',
-                        { 'bg-[#1d4eda52]': p === page }
-                      )}
-                    >
-                      {p}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+          <Pagination
+            pages={pages}
+            setTodoPage={setTodoPage}
+            currentPage={page}
+          />
         </>
       )}
     </div>

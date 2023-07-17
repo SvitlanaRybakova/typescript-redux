@@ -1,5 +1,12 @@
+export interface ITodo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
 export interface ITodoState {
-  todos: any[];
+  todos: ITodo[];
   loading: boolean;
   error: null | string;
   page: number;
