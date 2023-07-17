@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 
+interface ErrorProps {
+  errorText: string;
+}
 
-const Error = ({ errorText = 'Error' }) => {
+const Error: FC<ErrorProps> = ({ errorText = 'Error' }) => {
   return (
     <div className='absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2'>
       <div

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {FC} from 'react'
 
-const Spinner = () => {
+const Spinner: FC = () => {
   return (
     <div>
       <div className='absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 '>

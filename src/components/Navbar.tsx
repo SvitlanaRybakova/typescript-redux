@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { NavLink } from 'react-router-dom';
-import clsx from 'clsx';
 import { v4 as uuidv4 } from 'uuid';
 
 import logo from '../assets/logo.png';
 
-const router = [
+interface IRoutes {
+  id: string,
+  to: string,
+  title: string
+}
+
+const router: IRoutes[] = [
   {
     id: uuidv4(),
     to: '/',
@@ -17,7 +22,7 @@ const router = [
     title: 'Todos',
   },
 ];
-const Navbar = () => {
+const Navbar: FC = () => {
   return (
     <nav className='border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
