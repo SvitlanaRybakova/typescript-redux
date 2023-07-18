@@ -8,6 +8,8 @@ import Error from '../components/Error';
 import TodoItem from '../components/TodoItem';
 import Pagination from '../components/Pagination';
 import { ITodo } from '../types/todo';
+import PersonalTodos from '../components/PersonalTodos';
+
 
 const TOTAL_ITEMS = 200;
 const START_PAGE = 1;
@@ -17,7 +19,7 @@ const TodosList: React.FC = () => {
     (state) => state.todos
   );
 
-  const { fetchTodos, setTodoPage } = useActions();
+  const { fetchTodos, setTodoPage, createTodo } = useActions();
 
   useEffect(() => {
     fetchTodos(page, limit);
@@ -45,8 +47,9 @@ const TodosList: React.FC = () => {
 
   return (
     <div>
+      <PersonalTodos />
       <h2 className='m-4 text-xl  text-center font-bold tracking-tight leading-none text-gray-900 md:text-2xl dark:text-white'>
-        Todos List
+        Others Todos List
       </h2>
 
       {todos.length > 0 && (
@@ -87,6 +90,7 @@ const TodosList: React.FC = () => {
             </div>
           </div>
 
+          
           <Pagination
             pages={pages}
             setTodoPage={setTodoPage}

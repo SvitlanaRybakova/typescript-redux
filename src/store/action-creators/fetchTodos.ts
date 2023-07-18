@@ -1,4 +1,4 @@
-import { TodoAction, TodoActionTypes } from '../../types/todo';
+import { ITodo, TodoAction, TodoActionTypes } from '../../types/todo';
 import { Dispatch } from 'redux';
 import axios from 'axios';
 
@@ -27,4 +27,8 @@ export const fetchTodos = (page = 1, limit = 10): any => {
 
 export const setTodoPage = (page: number): TodoAction => {
   return { type: TodoActionTypes.SET_TODOS_PAGE, payload: page };
+};
+
+export const createTodo = (todo: ITodo) => {
+  return { type: TodoActionTypes.CREATE_TODO, payload: todo};
 };

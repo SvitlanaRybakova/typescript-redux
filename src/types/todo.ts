@@ -7,6 +7,7 @@ export interface ITodo {
 
 export interface ITodoState {
   todos: ITodo[];
+  yourTodos: ITodo[];
   loading: boolean;
   error: null | string;
   page: number;
@@ -18,6 +19,7 @@ export enum TodoActionTypes {
   FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS',
   FETCH_TODOS_ERROR = 'FETCH_TODOS_ERROR',
   SET_TODOS_PAGE = 'SET_TODOS_PAGE',
+  CREATE_TODO = 'CREATE_TODO',
 }
 
 export interface IFetchTodoAction {
@@ -39,8 +41,13 @@ export interface ISetTodoPage {
   payload: number;
 }
 
+export interface ICreateTodo {
+  type: TodoActionTypes.CREATE_TODO;
+  payload: ITodo[];
+}
 export type TodoAction =
   | IFetchTodoAction
   | IFetchTodoActionSuccess
   | IFetchUsersTodoError
-  | ISetTodoPage;
+  | ISetTodoPage
+  | ICreateTodo;
