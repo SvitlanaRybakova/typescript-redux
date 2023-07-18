@@ -11,11 +11,18 @@ import Map from '../components/Map';
 import Spinner from '../components/Spinner';
 import Error from '../components/Error';
 
+interface IInfo {
+  key: string;
+  value: string;
+}
+
 const UserPage = () => {
   let { id } = useParams();
-  const { loading, error, user } = useTypeSelector(
-    (state) => state.certainUser
-  );
+  const {
+    loading,
+    error,
+    user,
+  } = useTypeSelector((state) => state.certainUser);
 
   const { fetchCertainUser } = useActions();
 
@@ -27,7 +34,7 @@ const UserPage = () => {
   if (loading) return <Spinner />;
 
   const renderTheUserInfo = () => {
-    const info = [
+    const info: IInfo[] = [
       { key: 'street', value: user.address?.street },
       { key: 'suite', value: user.address?.suite },
       { key: 'city', value: user.address?.city },

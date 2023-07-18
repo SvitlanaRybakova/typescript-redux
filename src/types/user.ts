@@ -28,7 +28,7 @@ export interface Company {
   bs: string;
 }
 export interface IUserState {
-  users: any[];
+  users: IUser[];
   loading: boolean;
   error: null | string;
 }
