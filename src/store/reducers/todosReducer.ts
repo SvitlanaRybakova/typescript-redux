@@ -14,6 +14,17 @@ export const todosReducer = (
   action: TodoAction
 ): ITodoState => {
   switch (action.type) {
+    case TodoActionTypes.TOGGLE_TODO:
+      const updatedTodos = state.yourTodos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, completed: !todo.completed };
+        } else {
+          return todo;
+        }
+      });
+
+      return { ...state, yourTodos: updatedTodos };
+
     case TodoActionTypes.FETCH_TODOS:
       return { ...state, loading: true };
 

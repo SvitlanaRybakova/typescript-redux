@@ -20,6 +20,7 @@ export enum TodoActionTypes {
   FETCH_TODOS_ERROR = 'FETCH_TODOS_ERROR',
   SET_TODOS_PAGE = 'SET_TODOS_PAGE',
   CREATE_TODO = 'CREATE_TODO',
+  TOGGLE_TODO = 'TOGGLE_TODO',
 }
 
 export interface IFetchTodoAction {
@@ -45,9 +46,16 @@ export interface ICreateTodo {
   type: TodoActionTypes.CREATE_TODO;
   payload: ITodo[];
 }
+
+export interface IToggleTodo {
+  type: TodoActionTypes.TOGGLE_TODO;
+  payload: { id: number | string };
+}
+
 export type TodoAction =
   | IFetchTodoAction
   | IFetchTodoActionSuccess
   | IFetchUsersTodoError
   | ISetTodoPage
-  | ICreateTodo;
+  | ICreateTodo
+  | IToggleTodo;

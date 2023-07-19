@@ -30,5 +30,12 @@ export const setTodoPage = (page: number): TodoAction => {
 };
 
 export const createTodo = (todo: ITodo) => {
-  return { type: TodoActionTypes.CREATE_TODO, payload: todo};
+  return { type: TodoActionTypes.CREATE_TODO, payload: todo };
+};
+
+export const toggleTodo = (todo: ITodo) => {
+  return {
+    type: TodoActionTypes.TOGGLE_TODO,
+    payload: todo
+  };
 };

@@ -5,6 +5,7 @@ import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
 import TodoItem from './TodoItem';
 import Input from './Input';
+import { ITodo } from '../types/todo';
 
 const PersonalTodos = () => {
   const [todo, setTodo] = useState('');
@@ -13,10 +14,9 @@ const PersonalTodos = () => {
     (state) => state.todos
   );
 
-  const { createTodo } = useActions();
+  const { createTodo, toggleTodo } = useActions();
 
   const addTask = () => {
-   
     createTodo({
       userId: 123,
       id: uuidv4().slice(0, 3),
@@ -42,16 +42,23 @@ const PersonalTodos = () => {
           <div className='overflow-x-auto sm:mx-0.5 lg:mx-0.5'>
             <div className='py-2 inline-block min-w-full sm:px-6 lg:px-8'>
               <div className='overflow-hidden'>
-                <table className='min-w-full'>
+                <div className='min-w-full'>
                   {yourTodos.map((todo) => (
-                    <TodoItem
-                      userId={todo.userId}
-                      id={todo.id}
-                      completed={todo.completed}
-                      title={todo.title}
-                    />
+                    <div
+                      onClick={() => {
+                        toggleTodo(todo);
+                      }}
+                    >
+                      <TodoItem
+                        key={todo.id}
+                        userId={todo.userId}
+                        id={todo.id}
+                        completed={todo.completed}
+                        title={todo.title}
+                      />
+                    </div>
                   ))}
-                </table>
+                </div>
               </div>
             </div>
           </div>
