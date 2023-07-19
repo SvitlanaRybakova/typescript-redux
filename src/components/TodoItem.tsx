@@ -1,14 +1,32 @@
 import React, { FC } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import { ImRadioChecked } from 'react-icons/im';
 import { ImRadioChecked2 } from 'react-icons/im';
-
 import { ITodo } from '../types/todo';
 
-const TodoItem: FC<ITodo> = ({ userId, id, completed, title }) => {
+interface ITodoItem {
+  userId: number | string;
+  id: number | string;
+  completed: boolean;
+  title: string;
+  toggleTodo?: ({}: ITodo) => void;
+  style?: any;
+}
+
+const TodoItem: FC<ITodoItem> = ({
+  userId,
+  id,
+  completed,
+  title,
+  toggleTodo,
+  ...props
+}) => {
+  const handleClick = () => {
+    toggleTodo && toggleTodo({ userId, id, completed, title });
+  };
+
   return (
-    <tr className='bg-gray-100 border-b' key={uuidv4()}>
+    <tr className='bg-gray-100 border-b' onClick={handleClick} {...props}>
       <td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
         {userId}
       </td>

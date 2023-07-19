@@ -42,23 +42,19 @@ const PersonalTodos = () => {
           <div className='overflow-x-auto sm:mx-0.5 lg:mx-0.5'>
             <div className='py-2 inline-block min-w-full sm:px-6 lg:px-8'>
               <div className='overflow-hidden'>
-                <div className='min-w-full'>
+                <table className='min-w-full'>
                   {yourTodos.map((todo) => (
-                    <div
-                      onClick={() => {
-                        toggleTodo(todo);
-                      }}
-                    >
-                      <TodoItem
-                        key={todo.id}
-                        userId={todo.userId}
-                        id={todo.id}
-                        completed={todo.completed}
-                        title={todo.title}
-                      />
-                    </div>
+                    <TodoItem
+                      key={todo.id}
+                      userId={todo.userId}
+                      id={todo.id}
+                      completed={todo.completed}
+                      title={todo.title}
+                      toggleTodo={toggleTodo}
+                      style={{ cursor: 'pointer' }}
+                    />
                   ))}
-                </div>
+                </table>
               </div>
             </div>
           </div>
