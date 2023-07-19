@@ -10,7 +10,6 @@ import Pagination from '../components/Pagination';
 import { ITodo } from '../types/todo';
 import PersonalTodos from '../components/PersonalTodos';
 
-
 const TOTAL_ITEMS = 200;
 const START_PAGE = 1;
 
@@ -76,6 +75,7 @@ const TodosList: React.FC = () => {
                       <tbody>
                         {todos.map((todo: ITodo) => (
                           <TodoItem
+                            key={uuidv4()}
                             userId={todo.userId}
                             id={todo.id}
                             title={todo.title}
@@ -90,7 +90,6 @@ const TodosList: React.FC = () => {
             </div>
           </div>
 
-          
           <Pagination
             pages={pages}
             setTodoPage={setTodoPage}

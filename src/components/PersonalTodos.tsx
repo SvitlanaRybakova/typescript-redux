@@ -5,20 +5,17 @@ import { useActions } from '../customHooks/useActions';
 import { useTypeSelector } from '../customHooks/useTypeSelector';
 import TodoItem from './TodoItem';
 import Input from './Input';
-import { ITodo } from '../types/todo';
 
 const PersonalTodos = () => {
   const [todo, setTodo] = useState('');
 
-  const { yourTodos, page, limit, loading, error } = useTypeSelector(
-    (state) => state.todos
-  );
+  const { yourTodos } = useTypeSelector((state) => state.todos);
 
   const { createTodo, toggleTodo } = useActions();
 
   const addTask = () => {
     createTodo({
-      userId: 123,
+      userId: 'your_todo',
       id: uuidv4().slice(0, 3),
       title: todo,
       completed: false,
@@ -43,17 +40,19 @@ const PersonalTodos = () => {
             <div className='py-2 inline-block min-w-full sm:px-6 lg:px-8'>
               <div className='overflow-hidden'>
                 <table className='min-w-full'>
-                  {yourTodos.map((todo) => (
-                    <TodoItem
-                      key={todo.id}
-                      userId={todo.userId}
-                      id={todo.id}
-                      completed={todo.completed}
-                      title={todo.title}
-                      toggleTodo={toggleTodo}
-                      style={{ cursor: 'pointer' }}
-                    />
-                  ))}
+                  <tbody>
+                    {yourTodos.map((todo) => (
+                      <TodoItem
+                        key={todo.id}
+                        userId={todo.userId}
+                        id={todo.id}
+                        completed={todo.completed}
+                        title={todo.title}
+                        toggleTodo={toggleTodo}
+                        style={{ cursor: 'pointer' }}
+                      />
+                    ))}
+                  </tbody>
                 </table>
               </div>
             </div>
